@@ -10,7 +10,7 @@ PKG_NAME:=mklibs
 PKG_VERSION:=0.1.34
 
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://ftp.de.debian.org/debian/pool/main/m/mklibs/
+PKG_SOURCE_URL:=https://downloads.pangubox.com/sources/
 PKG_MD5SUM:=afe0ed527ba96b8a882b5de350603007
 
 include $(INCLUDE_DIR)/host-build.mk
