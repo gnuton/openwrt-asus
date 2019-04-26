@@ -34,6 +34,14 @@ jobs:
               echo "No changelog to generate. Changelog is generated only for tags matching ${REGXP_TO_MATCH}";
             fi;
       - run:
+          name: Downloading src dependencies
+          shell: /bin/bash
+          command: |
+           cd ${PROJECT_DIR}
+           wget https://github.com/gnuton/openwrt-asus-dl/archive/dsl-ac88u.zip
+           unzip -j dsl-ac88u.zip -d dl/
+           ls dl
+      - run:
           name: Build firmware
           shell: /bin/bash
           no_output_timeout: 120m
