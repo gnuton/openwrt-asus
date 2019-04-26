@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: gnuton/openwrt-asus-toolchains-docker
         environment:
-          PROJECT_DIR: "/root/project"
+          PROJECT_DIR: "$HOME/project"
           CHANGELOG_FILE: "/tmp/CHANGELOG"
           RELEASE_DIR: "src-rt-6.x.4708"
     steps:
