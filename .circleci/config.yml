@@ -4,7 +4,6 @@ jobs:
     docker:
       - image: gnuton/openwrt-asus-toolchains-docker
         environment:
-          PROJECT_DIR: "$HOME/project"
           CHANGELOG_FILE: "/tmp/CHANGELOG"
           RELEASE_DIR: "src-rt-6.x.4708"
     steps:
@@ -37,7 +36,6 @@ jobs:
           name: Downloading src dependencies
           shell: /bin/bash
           command: |
-           cd ${PROJECT_DIR}
            wget https://github.com/gnuton/openwrt-asus-dl/archive/dsl-ac88u.zip
            unzip -j dsl-ac88u.zip -d dl/
            ls dl
@@ -46,17 +44,16 @@ jobs:
           shell: /bin/bash
           no_output_timeout: 120m
           command: | 
-            cd ${PROJECT_DIR}
             ls
             pwd
             make | tee "/tmp/build.log" # | grep -i "error\|-e"
-            ls ${PROJECT_DIR}/bin
+            ls ${HOME}/project/bin
 
       - run:
           name: Prepare workspace
           command: |
             mkdir -p workspace/release
-            cp ${PROJECT_DIR}/bin/* workspace/release
+            cp ${HOME}/project/bin/* workspace/release
             cp /tmp/build.log workspace/release
              if [ -z "${CIRCLE_TAG}" ]; then
               echo "No CHANGELOG to copy. Not a release build."
