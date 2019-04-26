@@ -1,0 +1,11 @@
+build_dir/
+dl/
+logs/
+scripts/*/*.o
+scripts/*/*/*.o
+scripts/config/lxdialog/lxdialog
+scripts/config/mconf
+scripts/config/conf
+staging_dir/
+tmp/
+
