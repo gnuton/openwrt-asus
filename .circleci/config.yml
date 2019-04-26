@@ -97,7 +97,6 @@ workflows:
             branches:
               ignore:
                - master
-               - mainline
       - publish-github-release:
           filters:
             tags:
