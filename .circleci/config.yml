@@ -40,6 +40,11 @@ jobs:
            unzip -j dsl-ac88u.zip -d dl/
            ls dl
       - run:
+          name: Set kernel config
+          shell: /bin/basj
+          command:
+            cp target/linux/brcm63xx/config-3.4  build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config
+      - run:
           name: Build firmware
           shell: /bin/bash
           no_output_timeout: 120m
