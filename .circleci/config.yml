@@ -46,6 +46,16 @@ jobs:
             mkdir -p build_dir/linux-brcm63xx/linux-3.4.11-rt19/
             cp target/linux/brcm63xx/config-3.4.11  build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config
       - run:
+          name: HACK - Fixes 
+          shell: /bin/bash
+          command: |
+            # iptables-1.4.16.3 - missing includes
+            mkdir -p build_dir/linux-brcm63xx/iptables-1.4.16.3/include/linux/netfilter_ipv4
+            mkdir -p build_dir/linux-brcm63xx/iptables-1.4.16.3/extensions/
+            cp ./extern/broadcom-bsp-4.16L05/kernel/linux-3.4rt/include/linux/netfilter_ipv4/ipt_TRIGGER.h build_dir/linux-brcm63xx/iptables-1.4.16.3/include/linux/netfilter_ipv4
+            cp ./extern/broadcom-bsp-4.16L05/kernel/linux-3.4rt/include/linux/netfilter_ipv4/ipt_webstr.h build_dir/linux-brcm63xx/iptables-1.4.16.3/include/linux/netfilter_ipv4
+            cp ./extern/broadcom-bsp-4.16L05/userspace/gpl/apps/iptables/iptables-1.4.16.3/extensions/libext4.a build_dir/linux-brcm63xx/iptables-1.4.16.3/extensions/
+      - run:
           name: Build firmware
           shell: /bin/bash
           no_output_timeout: 120m
