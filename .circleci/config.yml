@@ -43,7 +43,7 @@ jobs:
           name: Set kernel config
           shell: /bin/bash
           command: |
-            mkdir -p build_dir/linux-brcm63xx/linux-3.4.11-rt19/
+            make prepare_kernel_conf
             cp target/linux/brcm63xx/config-3.4.11  build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config
       - run:
           name: HACK - Fixes 
@@ -62,6 +62,10 @@ jobs:
           command: | 
             ls
             pwd
+            if [[ ! -f build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config ]] ; then
+              echo 'Kernel configuration is missing.'
+              exit -1
+            fi
             make V=s | tee "/tmp/build.log" # | grep -i "error\|-e"
             ls ${HOME}/project/bin
 
