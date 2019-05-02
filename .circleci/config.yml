@@ -62,7 +62,7 @@ jobs:
           command: | 
             ls
             pwd
-            make | tee "/tmp/build.log" # | grep -i "error\|-e"
+            make V=s | tee "/tmp/build.log" # | grep -i "error\|-e"
             ls ${HOME}/project/bin
 
       - run:
