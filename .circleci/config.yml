@@ -43,6 +43,9 @@ jobs:
           name: Set kernel config
           shell: /bin/bash
           command: |
+            echo $PWD
+            echo "XXXX"
+            ls
             mkdir -p build_dir/linux-brcm63xx/linux-3.4.11-rt19/
             cp target/linux/brcm63xx/config-3.4.11  build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config
       - run:
