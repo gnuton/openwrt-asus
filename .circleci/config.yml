@@ -43,7 +43,7 @@ jobs:
           name: HACK - Set kernel config
           shell: /bin/bash
           command: |
-            make prepare_kernel_conf || :
+            make target/linux/compile || :
             cp target/linux/brcm63xx/config-3.4.11  build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config
       - run:
           name: HACK - Fixes 
