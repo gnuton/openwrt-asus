@@ -37,7 +37,7 @@ jobs:
           shell: /bin/bash
           command: |
            git clone https://gnuton:$GITHUB_TOKEN@github.com/gnuton/openwrt-asus-dl.git  --branch dsl-ac88u --single-branch --depth 1
-           cp openwrt-asus-dl/dl .
+           mv openwrt-asus-dl/dl .
            rm openwrt-asus-dl -Rf 
            ls dl
       - run:
