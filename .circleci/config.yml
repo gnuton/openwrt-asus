@@ -40,12 +40,6 @@ jobs:
            unzip -j dsl-ac88u.zip -d dl/
            ls dl
       - run:
-          name: HACK - Set kernel config
-          shell: /bin/bash
-          command: |
-            make target/linux/compile || :
-            cp target/linux/brcm63xx/config-3.4.11  build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config
-      - run:
           name: HACK - Fixes 
           shell: /bin/bash
           command: |
