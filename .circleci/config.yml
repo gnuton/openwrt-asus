@@ -51,6 +51,15 @@ jobs:
             cp ./extern/broadcom-bsp-4.16L05/kernel/linux-3.4rt/include/linux/netfilter_ipv4/ipt_webstr.h build_dir/linux-brcm63xx/iptables-1.4.16.3/include/linux/netfilter_ipv4
             cp ./extern/broadcom-bsp-4.16L05/userspace/gpl/apps/iptables/iptables-1.4.16.3/extensions/libext4.a build_dir/linux-brcm63xx/iptables-1.4.16.3/extensions/
       - run:
+          name: HACK - Build host opkg
+          shell: /bin/bash
+          command: | 
+            make tools/install
+            make toolchain/install
+            make target/compile
+            make package/opkg/host/compile
+            make package/opkg/host/install
+      - run:
           name: Build firmware
           shell: /bin/bash
           no_output_timeout: 120m
@@ -63,7 +72,6 @@ jobs:
             #fi
             make V=s | tee "/tmp/build.log" # | grep -i "error\|-e"
             ls ${HOME}/project/bin
-
       - run:
           name: Prepare workspace
           command: |
