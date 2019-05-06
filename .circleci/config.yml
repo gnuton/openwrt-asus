@@ -37,7 +37,7 @@ jobs:
           shell: /bin/bash
           command: |
            git-lfs clone git@github.com:gnuton/openwrt-asus-dl.git --branch dsl-ac88u --single-branch --depth 1
-           mv openwrt-asus-dl/dl .
+           mv openwrt-asus-dl/dl/* dl
            rm openwrt-asus-dl -Rf 
            ls dl
       - run:
@@ -57,10 +57,10 @@ jobs:
           command: | 
             ls
             pwd
-            if [[ ! -f build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config ]] ; then
-              echo 'Kernel configuration is missing.'
-              exit -1
-            fi
+            #if [[ ! -f build_dir/linux-brcm63xx/linux-3.4.11-rt19/.config ]] ; then
+            #  echo 'Kernel configuration is missing.'
+            #  exit -1
+            #fi
             make V=s | tee "/tmp/build.log" # | grep -i "error\|-e"
             ls ${HOME}/project/bin
 
